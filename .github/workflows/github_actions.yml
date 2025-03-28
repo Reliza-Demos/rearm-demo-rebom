@@ -1,6 +1,6 @@
 on: [push]
 
-name: Build Docker Image And Submit Metadata To Reliza Hub
+name: Build Docker Image And Submit Metadata To ReARM Demo
 
 permissions:
   contents: write
@@ -10,48 +10,15 @@ jobs:
     name: Build And Push Backend
     runs-on: ubuntu-latest
     steps:
-      - name: RelizaHub Build And Submit Release metadata action
-        uses: relizaio/reliza-docker-action@2.1
+      - name: ReARM Build And Submit Release metadata action
+        uses: relizaio/rearm-docker-action@main
         with:
           registry_username: ${{ secrets.DOCKER_LOGIN }}
           registry_password: ${{ secrets.DOCKER_TOKEN }}
           registry_host: registry.relizahub.com
-          image_namespace: registry.relizahub.com/library
+          image_namespace: registry.relizahub.com/d50bca61-d588-44ee-9dae-c0fbcd376270-public
           image_name: rebom-backend
-          reliza_api_id: ${{ secrets.RELIZA_API_ID }}
-          reliza_api_key: ${{ secrets.RELIZA_API_KEY }}
+          rearm_api_id: ${{ secrets.REARM_REBOM_BACKEND_API_ID }}
+          rearm_api_key: ${{ secrets.REARM_REBOM_BACKEND_API_KEY }}
           path: backend
-          reliza_project_id: 116bbe7f-35ea-4554-bbde-3845059961d5
           enable_sbom: 'true'
-  build-frontend:
-    name: Build And Push Frontend
-    runs-on: ubuntu-latest
-    steps:
-      - name: RelizaHub Build And Submit Release metadata action
-        uses: relizaio/reliza-docker-action@2.1
-        with:
-          registry_username: ${{ secrets.DOCKER_LOGIN }}
-          registry_password: ${{ secrets.DOCKER_TOKEN }}
-          registry_host: registry.relizahub.com
-          image_namespace: registry.relizahub.com/library
-          image_name: rebom-frontend
-          reliza_api_id: ${{ secrets.RELIZA_API_ID }}
-          reliza_api_key: ${{ secrets.RELIZA_API_KEY }}
-          path: frontend
-          reliza_project_id: a77887b8-2095-46ce-851f-47c72eca863b
-          enable_sbom: 'true'
-  build-helm:
-    name: Build And Push Helm Chart
-    runs-on: ubuntu-latest
-    steps:
-      - name: RelizaHub Build And Submit Release metadata action
-        uses: relizaio/reliza-helm-action@2.0
-        with:
-          registry_username: ${{ secrets.DOCKER_LOGIN }}
-          registry_password: ${{ secrets.DOCKER_TOKEN }}
-          registry_host: registry.relizahub.com/library
-          helm_chart_name: rebom
-          reliza_api_id: ${{ secrets.RELIZA_API_ID }}
-          reliza_api_key: ${{ secrets.RELIZA_API_KEY }}
-          path: helm
-          reliza_project_id: 4aa0e445-9f12-4c80-880a-f919c1761f6c
