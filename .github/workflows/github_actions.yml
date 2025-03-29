@@ -23,6 +23,7 @@ jobs:
           rearm_api_url: https://demo.rearmhq.com
           path: backend
           enable_sbom: 'true'
+          source_code_sbom_type: 'npm'
   build-frontend:
     name: Build And Push Frontend
     runs-on: ubuntu-latest
@@ -40,3 +41,4 @@ jobs:
           rearm_api_url: https://demo.rearmhq.com
           path: frontend
           enable_sbom: 'true'
+          source_code_sbom_type: 'npm'
