@@ -42,3 +42,18 @@ jobs:
           path: frontend
           enable_sbom: 'true'
           source_code_sbom_type: 'npm'
+  build-helm:
+    name: Build And Push Helm Chart
+    runs-on: ubuntu-latest
+    steps:
+      - name: ReARM Build And Submit Helm Chart Release metadata action
+        uses: relizaio/rearm-helm-action@main
+        with:
+          registry_username: ${{ secrets.DOCKER_LOGIN }}
+          registry_password: ${{ secrets.DOCKER_TOKEN }}
+          registry_host: registry.relizahub.com/d50bca61-d588-44ee-9dae-c0fbcd376270-public
+          helm_chart_name: rebom
+          reliza_api_id: ${{ secrets.REARM_REBOM_HELM_API_ID }}
+          reliza_api_key: ${{ secrets.REARM_REBOM_HELM_API_KEY }}
+          rearm_api_url: https://demo.rearmhq.com
+          path: helm
