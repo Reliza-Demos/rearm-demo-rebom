@@ -53,7 +53,7 @@ jobs:
           registry_password: ${{ secrets.DOCKER_TOKEN }}
           registry_host: registry.relizahub.com/d50bca61-d588-44ee-9dae-c0fbcd376270-public
           helm_chart_name: rebom
-          reliza_api_id: ${{ secrets.REARM_REBOM_HELM_API_ID }}
-          reliza_api_key: ${{ secrets.REARM_REBOM_HELM_API_KEY }}
+          rearm_api_id: ${{ secrets.REARM_REBOM_HELM_API_ID }}
+          rearm_api_key: ${{ secrets.REARM_REBOM_HELM_API_KEY }}
           rearm_api_url: https://demo.rearmhq.com
           path: helm
